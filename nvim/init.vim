@@ -294,6 +294,11 @@ function! s:build_go_files()
   endif
 endfunction
 
+augroup svelte_syntax
+  au!
+  autocmd BufNewFile,BufRead *.svelte   set syntax=html
+augroup END
+
 set updatetime=500
 
 "--------------------------
