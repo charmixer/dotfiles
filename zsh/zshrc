@@ -9,6 +9,11 @@ if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
   source /etc/profile.d/vte.sh
 fi
 
+ENVFILE=~/.env
+if [[ -f "$ENVFILE" ]]; then
+  source $ENVFILE
+fi
+
 alias intel='arch -x86_64'
 alias m1='arch -x86_64'
 alias ibrew='arch -x86_64 /usr/local/bin/brew'
