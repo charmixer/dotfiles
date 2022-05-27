@@ -1,5 +1,8 @@
 format = """
-($golang\n)\
+(\
+$golang\
+$docker_context\
+\n)\
 $username\
 $hostname\
 [](fg:#1C4961 bg:#2F79A1)\
@@ -23,6 +26,13 @@ right_format = """
 # ($git_branch[\uE0B0](fg:#3A95C7 bg:#3A95C7))\
 
 add_newline = false
+
+[docker_context]
+format = "[$symbol$context]($style)"
+disabled = false
+
+[kubernetes]
+disabled = false
 
 [character]
 success_symbol = ""
@@ -70,9 +80,6 @@ added_style = "bg:#3A95C7 fg:#666666"
 deleted_style = "bg:#3A95C7 fg:#666666"
 format = "([+$added]($added_style))([-$deleted]($deleted_style))"
 
-[kubernetes]
-disabled = false
-
 [username]
 format = "[ $user ]($style)"
 style_user = "bg:#1C4961 fg:white"
@@ -89,7 +96,7 @@ disabled = true
 
 [golang]
 disabled = false
-symbol = " "
+symbol = "🐹"
 style = "fg:gray bg:None"
 format = '[ $symbol ($version) ]($style)'
 
