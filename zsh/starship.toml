@@ -1,0 +1,106 @@
+format = """
+($golang\n)\
+$username\
+$hostname\
+[](fg:#1C4961 bg:#2F79A1)\
+$directory\
+[](fg:#2F79A1 bg:#3A95C7)\
+$git_branch\
+$git_status\
+[ ](fg:#3A95C7 bg:None)"""
+
+right_format = """
+(
+($cmd_duration)\
+[](fg:#1C4961 bg:None)
+($character)\
+($jobs)\
+($time)\
+)\
+"""
+
+# $directory[\uE0B0](fg:#3A95C7 bg:#3A95C7)\
+# ($git_branch[\uE0B0](fg:#3A95C7 bg:#3A95C7))\
+
+add_newline = false
+
+[character]
+success_symbol = ""
+error_symbol = ""
+format = "$symbol"
+disabled=true
+
+[line_break]
+disabled = false
+
+[directory]
+format = "[ $path ]($style)"
+style = "bg:#2F79A1 fg:white"
+
+[cmd_duration]
+show_milliseconds = true
+show_notifications = false
+min_time = 5_000
+format = "[$duration]($style) "
+
+[jobs]
+format = "[($symbol$number )]($style)"
+style = "bg:#1C4961 fg:white"
+
+[time]
+disabled = false
+format = "[$time [UTC](fg:blue bg:#1C4961) ]($style)"
+time_format = "%H:%M"
+utc_time_offset = "0"
+style = "bg:#1C4961 fg:white"
+
+[git_branch]
+format = '[[ $symbol$branch ](bg:#3A95C7 fg:white)]($style)'
+#format = "[ $symbol$branch(:$remote_branch) ]($style)"
+style = "bg:#3A95C7 fg:white"
+
+[git_status]
+format = '([[($all_status$ahead_behind)](bg:#3A95C7 fg:white)]($style))'
+#format = "[ $all_status ]($style)"
+style = "bg:#3A95C7 fg:white"
+
+[git_metrics]
+disabled = false
+added_style = "bg:#3A95C7 fg:#666666"
+deleted_style = "bg:#3A95C7 fg:#666666"
+format = "([+$added]($added_style))([-$deleted]($deleted_style))"
+
+[kubernetes]
+disabled = false
+
+[username]
+format = "[ $user ]($style)"
+style_user = "bg:#1C4961 fg:white"
+show_always = true
+
+[hostname]
+ssh_only = true
+format = "[@$hostname ]($style)"
+style = "bg:#1C4961 fg:white"
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true
+
+[golang]
+disabled = false
+symbol = " "
+style = "fg:gray bg:None"
+format = '[ $symbol ($version) ]($style)'
+
+[nodejs]
+disabled = true
+symbol = ""
+style = "bg:#3A95C7"
+format = '[[ $symbol ($version) ](bg:#3A95C7)]($style)'
+
+[rust]
+disabled = true
+symbol = ""
+style = "bg:#3A95C7"
+format = '[[ $symbol ($version) ](bg:#3A95C7)]($style)'
