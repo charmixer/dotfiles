@@ -28,5 +28,15 @@ if ! grep -q $COREUTILS_GNUBIN "$PATHFILE" ; then
 	echo $COREUTILS_GNUBIN | sudo tee -a $PATHFILE
 fi
 
+# Install DisplayLink
+brew tap homebrew/cask-drivers
+brew install displaylink
+
 # Install GPG
 brew install gnupg
+
+# Install fish shell
+brew install fish
+
+# Install starship
+brew install starship
