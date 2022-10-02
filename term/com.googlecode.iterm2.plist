@@ -1386,7 +1386,7 @@
 			<key>Screen</key>
 			<integer>-1</integer>
 			<key>Scrollback Lines</key>
-			<integer>1000</integer>
+			<integer>0</integer>
 			<key>Selected Text Color</key>
 			<dict>
 				<key>Blue Component</key>
@@ -1412,7 +1412,7 @@
 			<key>Send Code When Idle</key>
 			<false/>
 			<key>Shortcut</key>
-			<string>2</string>
+			<string>3</string>
 			<key>Silence Bell</key>
 			<false/>
 			<key>Sync Title</key>
@@ -2120,7 +2120,7 @@
 			<key>Send Code When Idle</key>
 			<false/>
 			<key>Shortcut</key>
-			<string>3</string>
+			<string>2</string>
 			<key>Silence Bell</key>
 			<false/>
 			<key>Sync Title</key>
