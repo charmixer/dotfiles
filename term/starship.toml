@@ -64,10 +64,12 @@ style = "bg:#1C4961 fg:white"
 [git_branch]
 format = '[[ $symbol$branch ](bg:#3A95C7 fg:white)]($style)'
 style = "bg:#3A95C7 fg:white"
+symbol = " "
 
 [git_status]
 format = '([[($all_status$ahead_behind)](bg:#3A95C7 fg:white)]($style))'
 style = "bg:#3A95C7 fg:white"
+deleted = "x"
 
 [git_metrics]
 disabled = false
