@@ -20,3 +20,7 @@ brew install iterm2
 
 # Docker
 brew install docker --cask
+brew install docker-compose
+
+# Go
+brew install go@1.19
