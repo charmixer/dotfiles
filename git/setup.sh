@@ -5,7 +5,7 @@ SCRIPTDIR=`dirname $SCRIPT`
 
 # profile
 NAME="Lasse Nielsen"
-EMAIL="5323679+charmixer@users.noreply.github.com "
+EMAIL="5323679+charmixer@users.noreply.github.com"
 GNAME=$(git config --global user.name)
 GEMAIL=$(git config --global user.email)
 GSIGNING_KEY=$(git config --global user.signingkey)
