@@ -40,3 +40,7 @@ brew install fish
 
 # Install starship
 brew install starship
+
+# Install cli tools
+brew install bat
+brew install ripgrep # rg

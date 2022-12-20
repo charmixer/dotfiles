@@ -22,7 +22,6 @@ endif
   Plug 'vim-airline/vim-airline-themes'                             " Theming for statusbar
   Plug 'lifepillar/vim-solarized8'                                  " Solarized color scheme
   Plug 'mhinz/vim-signify'                                          " git gutter
-  " Plug 'majutsushi/tagbar'                                          " Show tags in statusbar and navigate them
 
   " Syntax:
   Plug 'sheerun/vim-polyglot'
@@ -42,10 +41,8 @@ endif
   Plug 'junegunn/vim-easy-align'                                    " Align text
 
   " Misc:
-  " Plug 'tpope/vim-eunuch'                                           " Enables filecontrols directly within vim; :Move, :Delete, :Rename, etc.
   Plug 'tpope/vim-fugitive'                                         " Git for vim, :G... to use
   Plug 'tpope/vim-repeat'                                           " Enables repeat for some plugins
-  Plug 'ludovicchabant/vim-gutentags'                               " Setup ctags file
 
 call plug#end()
 
@@ -145,6 +142,10 @@ set autoread          " Automatically reload the file when it is changed from an
 set numberwidth=5     " give gutter a bit more spacing to prevent jumping
 set mouse=a           " make mouse interactive
 set formatoptions-=cro
+set tags=./tags,tags,./.tags,.tags;
+if executable('rg')
+  set grepprg=rg\ --vimgrep\ --hidden
+endif
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 
@@ -160,16 +161,6 @@ augroup END
 "--------------------------
 "|    Plugin settings     |
 "--------------------------
-command! -bang FLines call fzf#vim#grep(
-     \ 'grep -vnITr --color=always --exclude-dir=".svn" --exclude-dir=".git" --exclude=tags --exclude=*\.pyc --exclude=*\.exe --exclude=*\.dll --exclude=*\.zip --exclude=*\.gz "^$"',
-     \ 0,
-     \ {'options': '--reverse --prompt "FLines> "'})
-
-" autocmd BufWritePre * %s/\s\+$//e
-
-if !executable('ctags')
-  let g:gutentags_enabled = 0
-endif
 
 let g:fzf_action = {
   \ 'ctrl-m': 'e',
@@ -252,22 +243,11 @@ let g:go_highlight_function_calls = 1
 let g:go_highlight_extra_types = 0
 let g:go_highlight_generate_tags = 0
 
-" Open :GoDeclsDir with ctrl-g
-nmap <C-g> :GoDeclsDir<cr>
-imap <C-g> <esc>:<C-u>GoDeclsDir<cr>
-
 augroup go
   autocmd!
   " Show by default 2 spaces for a tab
   autocmd BufNewFile,BufRead *.go setlocal noexpandtab listchars+=tab:\ \  listchars-=tab:>- tabstop=2 shiftwidth=2
-  " :GoTest
-  autocmd FileType go nmap <leader>t <Plug>(go-test)
-  " :GoRun
-  autocmd FileType go nmap <leader>r <Plug>(go-run)
-  " :GoDoc
-  autocmd FileType go nmap <Leader>d <Plug>(go-doc)
-  " :GoInfo
-  autocmd FileType go nmap <Leader>i <Plug>(go-info)
+  let g:fzf_tags_command = 'gotags **/*.go'
 augroup END
 
 augroup svelte_syntax
@@ -287,7 +267,12 @@ command! W w
 command! Q q
 tnoremap <Esc> <C-\><C-n>
 
-nnoremap <C-f> :Tags<CR>
+" MacOS specific (sed -n l) to get chars from option/meta key combination
+nnoremap † g]
+nnoremap ‡ <C-]>
+nnoremap ƒ :Tags<CR>
+nnoremap <C-f> :Rg <CR>
+nnoremap <C-S-f> :Rg <C-R><C-W><CR>
 nnoremap <C-p> :FZF<CR>
 nnoremap <C-s> :w<CR>
 nnoremap <C-M> :bnext<CR>

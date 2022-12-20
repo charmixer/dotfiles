@@ -1,35 +1,54 @@
 format = """
-(\
-$golang\
-$docker_context\
-\n)\
 $username\
 $hostname\
-[](fg:#1C4961 bg:#2F79A1)\
+[](fg:bg_1 bg:bg_2)\
 $directory\
-[](fg:#2F79A1 bg:#3A95C7)\
+[](fg:bg_2 bg:bg_3)\
 $git_branch\
 $git_status\
-[ ](fg:#3A95C7 bg:None)"""
+[ ](fg:bg_3 bg:None)"""
 
 right_format = """
-(
 ($cmd_duration)\
-[](fg:#1C4961 bg:None)
+[](fg:bg_1 bg:None)
+(\
 ($character)\
 ($jobs)\
-($time)\
+($golang)\
 )\
+($time)\
 """
 
 add_newline = false
+
+command_timeout = 1000
+
+# Set "foo" as custom color palette
+palette = "theme"
+
+# Define custom colors
+[palettes.theme]
+# Overwrite existing color
+bg_1 = "#154159"
+bg_2 = "#26688c"
+bg_3 = "#3385b5"
+fg_1 = "#FFFFFF"
+fg_dimmed = "#AAAAAA"
+
 
 [docker_context]
 format = "[$symbol$context]($style)"
 disabled = false
 
 [kubernetes]
+format = '[$symbol$context( \($namespace\))]($style) '
 disabled = false
+[kubernetes.context_aliases]
+"dev.local.cluster.k8s" = "dev"
+"gke_.*_(?P<var_cluster>[\\w-]+)" = "gke-$var_cluster"
+[kubernetes.user_aliases]
+"dev.local.cluster.k8s" = "dev"
+"root/.*" = "root"
 
 [character]
 success_symbol = ""
@@ -42,7 +61,7 @@ disabled = false
 
 [directory]
 format = "[ $path ]($style)"
-style = "bg:#2F79A1 fg:white"
+style = "bg:bg_2 fg:fg_1"
 
 [cmd_duration]
 show_milliseconds = true
@@ -51,41 +70,43 @@ min_time = 5_000
 format = "[$duration]($style) "
 
 [jobs]
-format = "[($symbol$number )]($style)"
-style = "bg:#1C4961 fg:white"
+format = "[$symbol$number ]($style)"
+style = "bg:bg_1 fg:fg_1"
+number_threshold = 2
+symbol_threshold = 1
 
 [time]
 disabled = false
-format = "[$time [UTC](fg:blue bg:#1C4961) ]($style)"
+format = "[$time [UTC](fg:blue bg:bg_1) ]($style)"
 time_format = "%H:%M"
 utc_time_offset = "0"
-style = "bg:#1C4961 fg:white"
+style = "bg:bg_1 fg:fg_dimmed"
 
 [git_branch]
-format = '[[ $symbol$branch ](bg:#3A95C7 fg:white)]($style)'
-style = "bg:#3A95C7 fg:white"
+format = '[[ $symbol$branch ](bg:bg_3 fg:fg_1)]($style)'
+style = "bg:bg_3 fg:fg_1"
 symbol = " "
 
 [git_status]
-format = '([[($all_status$ahead_behind)](bg:#3A95C7 fg:white)]($style))'
-style = "bg:#3A95C7 fg:white"
+format = '([[($all_status$ahead_behind)](bg:bg_3 fg:fg_1)]($style))'
+style = "bg:bg_3 fg:fg_1"
 deleted = "x"
 
 [git_metrics]
 disabled = false
-added_style = "bg:#3A95C7 fg:#666666"
-deleted_style = "bg:#3A95C7 fg:#666666"
+added_style = "bg:bg_3 fg:#666666"
+deleted_style = "bg:bg_3 fg:#666666"
 format = "([+$added]($added_style))([-$deleted]($deleted_style))"
 
 [username]
 format = "[ $user ]($style)"
-style_user = "bg:#1C4961 fg:white"
+style_user = "bg:bg_1 fg:fg_1"
 show_always = true
 
 [hostname]
 ssh_only = true
 format = "[@$hostname ]($style)"
-style = "bg:#1C4961 fg:white"
+style = "bg:bg_1 fg:fg_1"
 
 # Disable the package module, hiding it from the prompt completely
 [package]
@@ -94,17 +115,17 @@ disabled = true
 [golang]
 disabled = false
 symbol = "🐹"
-style = "fg:gray bg:None"
-format = '[ $symbol ($version) ]($style)'
+style = "bg:bg_1 fg:fg_1"
+format = '[$symbol ($version) ]($style)'
 
 [nodejs]
 disabled = true
 symbol = ""
-style = "bg:#3A95C7"
-format = '[[ $symbol ($version) ](bg:#3A95C7)]($style)'
+style = "bg:bg_3"
+format = '[[ $symbol ($version) ](bg:bg_3)]($style)'
 
 [rust]
 disabled = true
 symbol = ""
-style = "bg:#3A95C7"
-format = '[[ $symbol ($version) ](bg:#3A95C7)]($style)'
+style = "bg:bg_3"
+format = '[[ $symbol ($version) ](bg:bg_3)]($style)'
