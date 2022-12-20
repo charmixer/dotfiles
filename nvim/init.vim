@@ -162,6 +162,7 @@ augroup END
 "|    Plugin settings     |
 "--------------------------
 
+let g:fzf_preview_window = ['right,50%,<90(up,40%)']
 let g:fzf_action = {
   \ 'ctrl-m': 'e',
   \ 'ctrl-t': 'tabedit',
@@ -268,9 +269,13 @@ command! Q q
 tnoremap <Esc> <C-\><C-n>
 
 " MacOS specific (sed -n l) to get chars from option/meta key combination
+" opt+t
 nnoremap † g]
+" opt+shift+t
 nnoremap ‡ <C-]>
+" opt+f
 nnoremap ƒ :Tags<CR>
+nnoremap <C-x> :Lexplore <CR>
 nnoremap <C-f> :Rg <CR>
 nnoremap <C-S-f> :Rg <C-R><C-W><CR>
 nnoremap <C-p> :FZF<CR>
