@@ -7,15 +7,15 @@ HOMEBREW_SBIN="$HOMEBREW/sbin"
 COREUTILS_GNUBIN="/opt/homebrew/opt/coreutils/libexec/gnubin"
 
 # Install Homebrew
-if [ ! -d $HOMEBREW ] ; then
+if [ ! -d $HOMEBREW ]; then
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
-if ! grep -q $HOMEBREW_BIN "$PATHFILE" ; then
+if ! grep -q $HOMEBREW_BIN "$PATHFILE"; then
 	echo $HOMEBREW_BIN | sudo tee -a $PATHFILE
 fi
 
-if ! grep -q $HOMEBREW_SBIN "$PATHFILE" ; then
+if ! grep -q $HOMEBREW_SBIN "$PATHFILE"; then
 	echo $HOMEBREW_SBIN | sudo tee -a $PATHFILE
 fi
 
@@ -24,7 +24,7 @@ eval "$(brew shellenv)"
 
 # Install coreutils (realpath etc)
 brew install coreutils
-if ! grep -q $COREUTILS_GNUBIN "$PATHFILE" ; then
+if ! grep -q $COREUTILS_GNUBIN "$PATHFILE"; then
 	echo $COREUTILS_GNUBIN | sudo tee -a $PATHFILE
 fi
 
@@ -39,8 +39,19 @@ brew install gnupg
 brew install fish
 
 # Install starship
-brew install starship
+#brew install starship
+
+# oh-my-posh fot terminal
+brew install jandedobbeleer/oh-my-posh/oh-my-posh
 
 # Install cli tools
 brew install bat
 brew install ripgrep # rg
+
+# Install Rectangle (window organizer)
+brew install --cask rectangle
+
+# Fonts
+brew tap homebrew/cask-fonts
+brew install font-inconsolata-nerd-font
+brew install font-roboto-mono-nerd-font

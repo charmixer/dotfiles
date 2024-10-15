@@ -1,20 +1,16 @@
 format = """
-$username\
-$hostname\
-[](fg:bg_1 bg:bg_2)\
 $directory\
-[](fg:bg_2 bg:bg_3)\
+[](fg:bg_1 bg:bg_2)\
 $git_branch\
 $git_status\
-[ ](fg:bg_3 bg:None)"""
+$character\
+"""
 
 right_format = """
 ($cmd_duration)\
-[](fg:bg_1 bg:None)
+[](fg:bg_3 bg:None)\
 (\
-($character)\
 ($jobs)\
-($golang)\
 )\
 ($time)\
 """
@@ -29,12 +25,18 @@ palette = "theme"
 # Define custom colors
 [palettes.theme]
 # Overwrite existing color
-bg_1 = "#154159"
-bg_2 = "#26688c"
-bg_3 = "#3385b5"
-fg_1 = "#FFFFFF"
-fg_dimmed = "#AAAAAA"
-
+#bg_1 = "#154159"
+#bg_2 = "#26688c"
+#bg_3 = "#3385b5"
+#fg_1 = "#FFFFFF"
+#fg_dimmed = "#AAAAAA"
+bg_1 = "#e4b700"
+bg_2 = "#b18e00"
+bg_3 = "#7f6600"
+bg_e = "#c0392b"
+bg_s = "#b18e00"
+fg_1 = "#000000"
+fg_2 = "#DEDEDE"
 
 [docker_context]
 format = "[$symbol$context]($style)"
@@ -50,57 +52,61 @@ disabled = false
 "dev.local.cluster.k8s" = "dev"
 "root/.*" = "root"
 
+[fill]
+symbol = " "
+
 [character]
-success_symbol = ""
-error_symbol = ""
-format = "$symbol"
-disabled=true
+format = "$symbol "
+success_symbol = "[](fg:bg_2 bg:bg_s)[](fg:bg_s bg:None)"
+error_symbol = "[](fg:bg_2 bg:bg_e)[](fg:bg_e bg:None)"
+disabled=false
 
 [line_break]
 disabled = false
 
 [directory]
 format = "[ $path ]($style)"
-style = "bg:bg_2 fg:fg_1"
+style = "bg:bg_1 fg:fg_1"
 
 [cmd_duration]
 show_milliseconds = true
 show_notifications = false
-min_time = 5_000
+min_time = 1_000
+style = "bg:None fg:fg_2"
 format = "[$duration]($style) "
 
 [jobs]
 format = "[$symbol$number ]($style)"
-style = "bg:bg_1 fg:fg_1"
+style = "bg:bg_3 fg:fg_2"
 number_threshold = 2
 symbol_threshold = 1
 
 [time]
 disabled = false
-format = "[$time [UTC](fg:blue bg:bg_1) ]($style)"
+format = "[$time [UTC](fg:fg_2 bg:bg_3) ]($style)"
 time_format = "%H:%M"
 utc_time_offset = "0"
-style = "bg:bg_1 fg:fg_dimmed"
+style = "bg:bg_3 fg:fg_2"
 
 [git_branch]
-format = '[[ $symbol$branch ](bg:bg_3 fg:fg_1)]($style)'
-style = "bg:bg_3 fg:fg_1"
+format = '[ $symbol$branch ]($style)'
+style = "bg:bg_2 fg:fg_1"
 symbol = " "
 
 [git_status]
-format = '([[($all_status$ahead_behind)](bg:bg_3 fg:fg_1)]($style))'
-style = "bg:bg_3 fg:fg_1"
+format = '([[($all_status$ahead_behind)](bg:bg_2 fg:fg_1)]($style))'
+style = "bg:bg_2 fg:fg_1"
 deleted = "x"
 
 [git_metrics]
 disabled = false
-added_style = "bg:bg_3 fg:#666666"
-deleted_style = "bg:bg_3 fg:#666666"
+added_style = "bg:bg_2 fg:fg_2"
+deleted_style = "bg:bg_2 fg:fg_2"
 format = "([+$added]($added_style))([-$deleted]($deleted_style))"
 
 [username]
 format = "[ $user ]($style)"
-style_user = "bg:bg_1 fg:fg_1"
+style_user = "bg:None fg:fg_2"
 show_always = true
 
 [hostname]
@@ -115,7 +121,7 @@ disabled = true
 [golang]
 disabled = false
 symbol = "🐹"
-style = "bg:bg_1 fg:fg_1"
+style = "bg:bg_3 fg:fg_1"
 format = '[$symbol ($version) ]($style)'
 
 [nodejs]

@@ -7,3 +7,4 @@
 ./nvim/setup.sh
 ./git/setup.sh
 ./go/setup.sh
+./yabai/setup.sh
