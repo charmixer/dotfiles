@@ -16,8 +16,9 @@ end tell
 
 #ln -i -v -s "$SCRIPTDIR/zshrc" ~/.zshrc
 #ln -i -v -s "$SCRIPTDIR/p10k.zsh" ~/.p10k.zsh
-ln -i -v -s "$SCRIPTDIR/starship.toml" ~/.config/starship.toml
-ln -i -v -s "$SCRIPTDIR/ohmyposh.json" ~/.config/ohmyposh.json
+#ln -i -v -s "$SCRIPTDIR/starship.toml" ~/.config/starship.toml
+#ln -i -v -s "$SCRIPTDIR/ohmyposh.json" ~/.config/ohmyposh.json
+ln -i -v -s "$SCRIPTDIR/ohmyposh.yaml" ~/.config/ohmyposh.yaml
 ln -i -v -s "$SCRIPTDIR/m1.env" ~/.env
 
 FISH=`which fish`

@@ -3,7 +3,7 @@
 SCRIPT=`realpath $0`
 SCRIPTDIR=`dirname $SCRIPT`
 
-rm -rf ~/.config/nvim/
+#rm -rf ~/.config/nvim/
 ln -i -v -s "$SCRIPTDIR/nvchad" ~/.config/nvim
 
 #ln -i -v -s "$SCRIPTDIR/init.vim" ~/.config/nvim/
